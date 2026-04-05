@@ -2,7 +2,7 @@ import numpy as np
 import struct
 from array import array
 
-class MnistDataloader(object):
+class MnistDataHelper(object):
     def __init__(self, training_images_filepath,training_labels_filepath,
                  test_images_filepath, test_labels_filepath):
         self.training_images_filepath = training_images_filepath
