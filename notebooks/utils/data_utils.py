@@ -84,8 +84,10 @@ class MnistDataHelper(object):
             plt.tight_layout()
             plt.show()
 
-    def plot_net_comparison(x_test, n_samples, networks, names):
-        batch_inputs = x_test[np.random.randint(0, x_test.shape[0], size=n_samples)]
+    def plot_net_comparison(x_test, y_test, n_samples, networks, names):
+        random_indices = np.random.randint(0, x_test.shape[0], size=n_samples)
+        batch_inputs = x_test[random_indices]
+        batch_targets = y_test[random_indices]
 
         plot_names = ["Input"]
         for name in names:
@@ -127,7 +129,7 @@ class MnistDataHelper(object):
 
             for i, network_output in enumerate(batch_outputs[1:], start=0):
                 recon = network_output[row]
-                error = np.abs(input_img - recon)
+                error = np.abs(batch_targets[row] - recon)
 
                 recon_col = 1 + 2 * i
                 err_col = 2 + 2 * i
