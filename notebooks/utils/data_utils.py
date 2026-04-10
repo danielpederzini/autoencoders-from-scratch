@@ -52,22 +52,27 @@ class MnistDataHelper(object):
         noise = np.random.choice([0, 1], size=x.shape, p=[noise_factor, 1 - noise_factor])
         return x * noise
         
-    def plot_transformation(x_test, n_samples, networks):
+    def plot_transformation(x_test, n_samples, networks, names):
         batch_inputs = x_test[np.random.randint(0, x_test.shape[0], size=n_samples)]
         
-        for network in networks:
+        n_networks = len(networks)
+        sample_outputs = networks[0].forward(batch_inputs)
+        n_stages = len(sample_outputs) + 1 
+        
+        fig, axes = plt.subplots(n_samples * n_networks, n_stages, 
+                                figsize=(n_stages * 2, n_samples * n_networks * 2), 
+                                squeeze=False)
+
+        for net_idx, (network, name) in enumerate(zip(networks, names)):
             outputs = network.forward(batch_inputs)
             outputs.insert(0, batch_inputs)
             
-            n_stages = len(outputs)
-
-            fig, axes = plt.subplots(n_samples, n_stages, figsize=(n_stages*2, n_samples*2), squeeze=False)
-
-            for row in range(n_samples):
+            for sample_idx in range(n_samples):
+                grid_row = (net_idx * n_samples) + sample_idx
+                
                 for col, data in enumerate(outputs):
-                    ax = axes[row, col] 
-
-                    img = data[row] 
+                    ax = axes[grid_row, col]
+                    img = data[sample_idx]
 
                     if img.size == 784:
                         img = img.reshape(28, 28)
@@ -81,8 +86,17 @@ class MnistDataHelper(object):
                     ax.imshow(img, cmap="gray")
                     ax.axis("off")
 
-            plt.tight_layout()
-            plt.show()
+                    if grid_row == 0:
+                        title = "Input" if col == 0 else f"Layer {col}"
+                        ax.set_title(title, fontweight='bold')
+                
+                if sample_idx == n_samples // 2:
+                    axes[grid_row, 0].text(-10, 14, name, rotation=90, 
+                                        verticalalignment='center', 
+                                        fontweight='bold', fontsize=12)
+
+    plt.tight_layout()
+    plt.show()
 
     def plot_net_comparison(x_test, y_test, n_samples, networks, names):
         random_indices = np.random.randint(0, x_test.shape[0], size=n_samples)
