@@ -7,7 +7,7 @@ This repository explores how autoencoders learn to compress and reconstruct data
 The project includes:
 * Implementation of three autoencoder models from scratch.
 * Weight tying logic for mirrored layers.
-* Comparison accross multiple networks with different latent sizes.
+* Comparison across multiple networks with different latent sizes.
 * Grid search for thresholds in anomaly detector model.
 * Error heatmaps, anomaly detection confusion matrices, ROC curve plots, reconstruction error distribution plots.
 
