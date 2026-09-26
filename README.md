@@ -11,7 +11,8 @@ The project includes:
 * Grid search for thresholds in anomaly detector model.
 * Error heatmaps, anomaly detection confusion matrices, ROC curve plots, reconstruction error distribution plots.
 
-![Autoencoder Architecture](https://www.mathworks.com/help/examples/nnet/win64/WeightTyingUsingNestedLayerExample_01.jpeg)
+![Autoencoder Architecture](https://media.geeksforgeeks.org/wp-content/uploads/20251007093708285354/nueral.webp)
+*Source: https://www.geeksforgeeks.org/deep-learning/types-of-autoencoders/*
 
 ## Dataset
 - **MNIST**: 70,000 images of hand-written digits (28×28 pixels)
