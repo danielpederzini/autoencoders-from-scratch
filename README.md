@@ -12,6 +12,7 @@ The project includes:
 * Error heatmaps, anomaly detection confusion matrices, ROC curve plots, reconstruction error distribution plots.
 
 ![Autoencoder Architecture](https://media.geeksforgeeks.org/wp-content/uploads/20251007093708285354/nueral.webp)
+
 *Source: https://www.geeksforgeeks.org/deep-learning/types-of-autoencoders/*
 
 ## Dataset
